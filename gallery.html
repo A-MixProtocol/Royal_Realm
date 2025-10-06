@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Royal Realm – Gallery</title>
+<link rel="stylesheet" href="css/style.css">
+<style>
+.gallery .card {position:relative; overflow:hidden;}
+.gallery .card img {
+  width:100%; border-radius:10px; display:block; transition:transform 0.5s ease; object-fit:cover;
+}
+.gallery .card::after {
+  content:''; position:absolute; inset:0; background:rgba(255,215,0,0.15);
+  opacity:0; transition:0.5s;
+}
+.gallery .card:hover img {transform:scale(1.05);}
+.gallery .card:hover::after {opacity:1;}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Royal Realm</h1>
+</header>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="services.html">Services</a>
+  <a href="gallery.html">Gallery</a>
+  <a href="contact.html">Contact</a>
+</nav>
+
+<main>
+  <section class="services">
+    <h2>Our Gallery</h2>
+    <div class="cards gallery">
+      <div class="card"><img src="images/project1.jpg" alt="Project 1"></div>
+      <div class="card"><img src="images/project2.jpg" alt="Project 2"></div>
+      <div class="card"><img src="images/project3.jpg" alt="Project 3"></div>
+      <div class="card"><img src="images/screen.png" alt="Project 4"></div>
+      <div class="card"><img src="images/cycle.png" alt="See More"></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  &copy; 2025 Royal Realm. All Rights Reserved.
+</footer>
+
+</body>
+</html>
