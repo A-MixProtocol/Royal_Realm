@@ -87,90 +87,87 @@
 </footer>
 
 <!-- Sticky coffee button -->
-<a href="#" class="coffee-sticky">Buy me a cup of coffee ☕</a>
-<!-- Sticky coffee button (keep your existing one) -->
 <a href="#" class="coffee-sticky" id="stickySupportBtn">Buy me a cup of coffee ☕</a>
 
-<!-- Support Modal -->
-<div id="supportModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); display:flex; align-items:center; justify-content:center; z-index:1000;">
-  <div class="card" style="position:relative; background:#fffaf0; padding:2rem 2.5rem; border-radius:20px; max-width:400px; text-align:center; box-shadow:0 8px 30px rgba(0,0,0,0.15); font-family:'Georgia', serif;">
-    <span id="closeModal" style="position:absolute; top:10px; right:15px; font-size:1.5rem; cursor:pointer; color:#b78b26;">&times;</span>
-    <h1 style="font-size:2rem; color:#b78b26; margin-bottom:0.5rem; text-shadow:1px 1px 2px rgba(0,0,0,0.2);">Support Royal Realm ☕</h1>
-    <p style="margin:0.5rem 0 1.2rem; font-size:1rem; color:#5a4b2c;">Your kindness fuels our creativity — every small gesture keeps the Realm alive.</p>
-    <textarea id="supportMessage" placeholder="Leave a message or blessing (optional)..." style="width:100%; height:80px; border-radius:10px; border:1px solid #c8b68a; padding:0.5rem; resize:none; font-family:inherit;"></textarea>
-    <button id="supportBtn" style="background:#b78b26; color:#fff; border:none; padding:0.7rem 1.5rem; border-radius:10px; margin-top:1rem; font-size:1rem; cursor:pointer; transition:all 0.3s ease; box-shadow:0 0 15px rgba(183,139,38,0.5);">Proceed to Support</button>
+<!-- Royal Minimal Support Modal -->
+<div id="supportModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.15); display:flex; align-items:center; justify-content:center; z-index:1000; pointer-events:none;">
+  <div class="card" style="
+      position:relative; 
+      background:#fffaf0; 
+      padding:1.5rem 2rem; 
+      border-radius:15px; 
+      width:90%; 
+      max-width:360px; 
+      text-align:center; 
+      box-shadow:0 6px 20px rgba(0,0,0,0.12); 
+      font-family:'Georgia', serif; 
+      pointer-events:auto;
+      animation:slideUp 0.35s ease-out;
+    ">
+    <span id="closeModal" style="position:absolute; top:8px; right:12px; font-size:1.4rem; cursor:pointer; color:#b78b26;">&times;</span>
+    <h1 style="font-size:1.5rem; color:#b78b26; margin-bottom:0.4rem; text-shadow:0.5px 0.5px 1px rgba(0,0,0,0.15);">Support Royal Realm ☕</h1>
+    <textarea id="supportMessage" placeholder="Your message..." style="width:100%; height:60px; border-radius:8px; border:1px solid #c8b68a; padding:0.4rem; resize:none; font-family:inherit; margin-top:0.6rem;"></textarea>
+    <button id="supportBtn" style="background:#b78b26; color:#fff; border:none; padding:0.6rem 1.2rem; border-radius:8px; margin-top:0.8rem; font-size:0.95rem; cursor:pointer; transition:all 0.25s ease; box-shadow:0 0 10px rgba(183,139,38,0.4);">Proceed</button>
   </div>
 </div>
 
 <script>
-  // Razorpay test link
-  const paymentLink = "https://rzp.io/rzp/lcAllbG9";
-
+  const paymentLink = "https://rzp.io/l/your-test-link";
   const modal = document.getElementById("supportModal");
 
-  // Open modal when sticky button clicked
   document.getElementById("stickySupportBtn").onclick = () => {
     modal.style.display = "flex";
   };
 
-  // Close modal on X
   document.getElementById("closeModal").onclick = () => {
     modal.style.display = "none";
   };
 
-  // Close modal when clicking outside
   window.onclick = (e) => {
     if(e.target == modal) modal.style.display = "none";
   };
 
-  // Support button inside modal
   document.getElementById("supportBtn").addEventListener("click", () => {
     const msg = document.getElementById("supportMessage").value.trim();
     let refID = "CoffeeForRoyalRealm";
-    
-    // Construct magical note
     let noteText = "One golden coffee for Royal Realm ☕";
-    if(msg) {
+    if(msg){
       noteText += " – From: " + msg;
       const safeMsg = encodeURIComponent(msg.replace(/\s+/g, "_"));
       refID = `CoffeeForRoyalRealm_By_${safeMsg}`;
     }
-
-    // Construct Razorpay URL
     const urlParts = [];
     urlParts.push(`note=${encodeURIComponent(noteText)}`);
     urlParts.push(`reference_id=${refID}`);
     const url = `${paymentLink}?${urlParts.join("&")}`;
-
     window.open(url, "_blank");
     modal.style.display = "none";
   });
 
-  // Floating particles inside modal
-  for(let i=0; i<20; i++){
+  // Subtle particles
+  for(let i=0; i<12; i++){
     const p = document.createElement('div');
     p.className = 'particle';
     p.style.position = 'absolute';
     p.style.borderRadius = '50%';
-    p.style.background = 'rgba(183,139,38,0.6)';
+    p.style.background = 'rgba(183,139,38,0.35)';
     p.style.left = Math.random()*100 + 'vw';
-    p.style.width = p.style.height = (4 + Math.random()*6) + 'px';
-    p.style.animation = `float ${8 + Math.random()*5}s linear infinite`;
+    p.style.width = p.style.height = (3 + Math.random()*4) + 'px';
+    p.style.animation = `float ${6 + Math.random()*4}s linear infinite`;
     modal.appendChild(p);
   }
 
-  // Particle animation keyframes and modal slide-up
   const styleEl = document.createElement('style');
   styleEl.innerHTML = `
     @keyframes float {
-      0% { transform: translateY(100vh) translateX(0) scale(0.5); opacity:0; }
-      10% { opacity:0.7; }
-      50% { transform: translateY(50vh) translateX(30px) scale(1); opacity:1; }
-      100% { transform: translateY(-10vh) translateX(-30px) scale(0.5); opacity:0; }
+      0% { transform: translateY(80vh) translateX(0) scale(0.5); opacity:0; }
+      10% { opacity:0.5; }
+      50% { transform: translateY(40vh) translateX(20px) scale(1); opacity:1; }
+      100% { transform: translateY(-5vh) translateX(-20px) scale(0.5); opacity:0; }
     }
 
     @keyframes slideUp {
-      from { transform: translateY(50px); opacity:0; }
+      from { transform: translateY(20px); opacity:0; }
       to { transform: translateY(0); opacity:1; }
     }
   `;
