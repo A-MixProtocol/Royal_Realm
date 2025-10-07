@@ -89,25 +89,30 @@
 <!-- Sticky coffee button -->
 <a href="#" class="coffee-sticky" id="stickySupportBtn">Buy me a cup of coffee ☕</a>
 
-<!-- Royal Minimal Support Modal -->
+<!-- Modal -->
 <div id="supportModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.15); display:flex; align-items:center; justify-content:center; z-index:1000; pointer-events:none;">
   <div class="card" style="
-      position:relative; 
-      background:#fffaf0; 
-      padding:1.5rem 2rem; 
-      border-radius:15px; 
-      width:90%; 
-      max-width:360px; 
-      text-align:center; 
-      box-shadow:0 6px 20px rgba(0,0,0,0.12); 
-      font-family:'Georgia', serif; 
+      position:relative;
+      background:#fffaf0;
+      border-radius:15px;
+      width:50vw;           /* width = 5 units */
+      height:30vw;          /* height = 3 units */
+      max-width:400px;      /* optional max size */
+      max-height:240px;     /* maintain ratio */
+      text-align:center;
+      box-shadow:0 6px 20px rgba(0,0,0,0.12);
+      font-family:'Georgia', serif;
+      padding:1rem 1.5rem;
       pointer-events:auto;
       animation:slideUp 0.35s ease-out;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
     ">
     <span id="closeModal" style="position:absolute; top:8px; right:12px; font-size:1.4rem; cursor:pointer; color:#b78b26;">&times;</span>
-    <h1 style="font-size:1.5rem; color:#b78b26; margin-bottom:0.4rem; text-shadow:0.5px 0.5px 1px rgba(0,0,0,0.15);">Support Royal Realm ☕</h1>
-    <textarea id="supportMessage" placeholder="Your message..." style="width:100%; height:60px; border-radius:8px; border:1px solid #c8b68a; padding:0.4rem; resize:none; font-family:inherit; margin-top:0.6rem;"></textarea>
-    <button id="supportBtn" style="background:#b78b26; color:#fff; border:none; padding:0.6rem 1.2rem; border-radius:8px; margin-top:0.8rem; font-size:0.95rem; cursor:pointer; transition:all 0.25s ease; box-shadow:0 0 10px rgba(183,139,38,0.4);">Proceed</button>
+    <h1 style="font-size:1.4rem; color:#b78b26; margin-bottom:0.4rem; text-shadow:0.5px 0.5px 1px rgba(0,0,0,0.15);">Support Royal Realm ☕</h1>
+    <textarea id="supportMessage" placeholder="Your message..." style="width:100%; height:50%; border-radius:8px; border:1px solid #c8b68a; padding:0.4rem; resize:none; font-family:inherit;"></textarea>
+    <button id="supportBtn" style="background:#b78b26; color:#fff; border:none; padding:0.5rem 1rem; border-radius:8px; font-size:0.95rem; cursor:pointer; transition:all 0.25s ease; box-shadow:0 0 10px rgba(183,139,38,0.4); margin-top:0.5rem;">Proceed</button>
   </div>
 </div>
 
@@ -115,17 +120,9 @@
   const paymentLink = "https://rzp.io/l/your-test-link";
   const modal = document.getElementById("supportModal");
 
-  document.getElementById("stickySupportBtn").onclick = () => {
-    modal.style.display = "flex";
-  };
-
-  document.getElementById("closeModal").onclick = () => {
-    modal.style.display = "none";
-  };
-
-  window.onclick = (e) => {
-    if(e.target == modal) modal.style.display = "none";
-  };
+  document.getElementById("stickySupportBtn").onclick = () => { modal.style.display = "flex"; };
+  document.getElementById("closeModal").onclick = () => { modal.style.display = "none"; };
+  window.onclick = (e) => { if(e.target == modal) modal.style.display = "none"; };
 
   document.getElementById("supportBtn").addEventListener("click", () => {
     const msg = document.getElementById("supportMessage").value.trim();
@@ -143,29 +140,10 @@
     window.open(url, "_blank");
     modal.style.display = "none";
   });
-
-  // Subtle particles
-  for(let i=0; i<12; i++){
-    const p = document.createElement('div');
-    p.className = 'particle';
-    p.style.position = 'absolute';
-    p.style.borderRadius = '50%';
-    p.style.background = 'rgba(183,139,38,0.35)';
-    p.style.left = Math.random()*100 + 'vw';
-    p.style.width = p.style.height = (3 + Math.random()*4) + 'px';
-    p.style.animation = `float ${6 + Math.random()*4}s linear infinite`;
-    modal.appendChild(p);
-  }
-
+  
+  // Slide-up animation
   const styleEl = document.createElement('style');
   styleEl.innerHTML = `
-    @keyframes float {
-      0% { transform: translateY(80vh) translateX(0) scale(0.5); opacity:0; }
-      10% { opacity:0.5; }
-      50% { transform: translateY(40vh) translateX(20px) scale(1); opacity:1; }
-      100% { transform: translateY(-5vh) translateX(-20px) scale(0.5); opacity:0; }
-    }
-
     @keyframes slideUp {
       from { transform: translateY(20px); opacity:0; }
       to { transform: translateY(0); opacity:1; }
@@ -173,6 +151,7 @@
   `;
   document.head.appendChild(styleEl);
 </script>
+
 
       
 </body>
