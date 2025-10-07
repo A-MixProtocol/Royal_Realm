@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Royal Realm</title>
+<style>
+  body {
+    font-family: 'Georgia', serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #f5f0e1, #e6d5b8);
+    min-height: 100vh;
+    position: relative;
+  }
+
+  /* Support Button on main page */
+  #openSupportBtn {
+    padding: 12px 22px;
+    border-radius: 12px;
+    background: #b78b26;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    box-shadow: 0 0 15px rgba(183,139,38,0.5);
+    transition: all 0.3s ease;
+    margin: 2rem;
+  }
+  #openSupportBtn:hover {
+    background: #d4a634;
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(183,139,38,0.8);
+  }
+
+  /* Modal overlay */
+  #supportModal {
+    display: none;
+    position: fixed;
+    top:0; left:0;
+    width:100%; height:100%;
+    background: rgba(0,0,0,0.6);
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    overflow: hidden;
+  }
+
+  /* Modal card */
+  #supportModal .card {
+    position: relative;
+    background: #fffaf0;
+    padding: 2rem 2.5rem;
+    border-radius: 20px;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+    z-index: 1;
+  }
+
+  #supportModal h1 {
+    font-size: 2rem;
+    color: #b78b26;
+    margin-bottom: 0.5rem;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+  }
+
+  #supportModal p {
+    margin: 0.5rem 0 1.2rem;
+    font-size: 1rem;
+    color: #5a4b2c;
+  }
+
+  #supportModal textarea {
+    width: 100%;
+    height: 80px;
+    border-radius: 10px;
+    border: 1px solid #c8b68a;
+    padding: 0.5rem;
+    resize: none;
+    font-family: inherit;
+  }
+
+  #supportModal button {
+    background: #b78b26;
+    color: #fff;
+    border: none;
+    padding: 0.7rem 1.5rem;
+    border-radius: 10px;
+    margin-top: 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(183,139,38,0.5);
+  }
+
+  #supportModal button:hover {
+    background: #d4a634;
+    box-shadow: 0 0 25px rgba(183,139,38,0.8);
+    transform: scale(1.05);
+  }
+
+  /* Close icon */
+  #closeModal {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #b78b26;
+  }
+
+  /* Floating golden particles */
+  .particle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(183,139,38,0.6);
+    animation: float 10s linear infinite;
+  }
+
+  @keyframes float {
+    0% { transform: translateY(100vh) translateX(0) scale(0.5); opacity:0; }
+    10% { opacity:0.7; }
+    50% { transform: translateY(50vh) translateX(30px) scale(1); opacity:1; }
+    100% { transform: translateY(-10vh) translateX(-30px) scale(0.5); opacity:0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Main Support Button -->
+<button id="openSupportBtn">Support Royal Realm ☕</button>
+
+<!-- Modal -->
+<div id="supportModal">
+  <!-- Floating particles will be injected via JS -->
+  <div class="card">
+    <span id="closeModal">&times;</span>
+    <h1>Support Royal Realm ☕</h1>
+    <p>Your kindness fuels our creativity — every small gesture keeps the Realm alive.</p>
+    <textarea id="supportMessage" placeholder="Leave a message or blessing (optional)..."></textarea>
+    <button id="supportBtn">Proceed to Support</button>
+  </div>
+</div>
+
+<script>
+  // Replace with your Razorpay / UPI payment link
+  const paymentLink = "https://rzp.io/rzp/lcAllbG9";
+
+  // Modal logic
+  const openBtn = document.getElementById("openSupportBtn");
+  const modal = document.getElementById("supportModal");
+  const closeBtn = document.getElementById("closeModal");
+
+  openBtn.onclick = () => modal.style.display = "flex";
+  closeBtn.onclick = () => modal.style.display = "none";
+  window.onclick = (e) => { if(e.target == modal) modal.style.display = "none"; }
+
+  // Support button inside modal
+  document.getElementById("supportBtn").addEventListener("click", () => {
+    const msg = encodeURIComponent(document.getElementById("supportMessage").value.trim());
+    const url = msg ? `${paymentLink}?note=${msg}` : paymentLink;
+    window.open(url, "_blank");
+    modal.style.display = "none";
+  });
+
+  // Floating particles inside modal
+  for(let i=0; i<20; i++){
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.left = Math.random()*100 + 'vw';
+    p.style.width = p.style.height = (4 + Math.random()*6) + 'px';
+    p.style.animationDuration = (8 + Math.random()*5) + 's';
+    modal.appendChild(p);
+  }
+</script>
+
+</body>
+</html>
