@@ -103,50 +103,50 @@
 </div>
 
 <script>
-  // Your Razorpay test link
-  const paymentLink = "https://rzp.io/l/your-test-link";
+  // Razorpay test link
+  const paymentLink = "https://rzp.io/rzp/lcAllbG9";
+
+  const modal = document.getElementById("supportModal");
 
   // Open modal when sticky button clicked
   document.getElementById("stickySupportBtn").onclick = () => {
-    document.getElementById("supportModal").style.display = "flex";
+    modal.style.display = "flex";
   };
 
   // Close modal on X
   document.getElementById("closeModal").onclick = () => {
-    document.getElementById("supportModal").style.display = "none";
+    modal.style.display = "none";
   };
 
   // Close modal when clicking outside
   window.onclick = (e) => {
-    if(e.target == document.getElementById("supportModal")) {
-      document.getElementById("supportModal").style.display = "none";
-    }
+    if(e.target == modal) modal.style.display = "none";
   };
 
   // Support button inside modal
   document.getElementById("supportBtn").addEventListener("click", () => {
     const msg = document.getElementById("supportMessage").value.trim();
-    
-    // Personalized reference ID
     let refID = "CoffeeForRoyalRealm";
-    if(msg){
+    
+    // Construct magical note
+    let noteText = "One golden coffee for Royal Realm ☕";
+    if(msg) {
+      noteText += " – From: " + msg;
       const safeMsg = encodeURIComponent(msg.replace(/\s+/g, "_"));
       refID = `CoffeeForRoyalRealm_By_${safeMsg}`;
     }
 
-    // Construct payment URL with note and reference_id
+    // Construct Razorpay URL
     const urlParts = [];
-    if(msg) urlParts.push(`note=${encodeURIComponent(msg)}`);
+    urlParts.push(`note=${encodeURIComponent(noteText)}`);
     urlParts.push(`reference_id=${refID}`);
     const url = `${paymentLink}?${urlParts.join("&")}`;
 
-    // Open Razorpay link in new tab
     window.open(url, "_blank");
-    document.getElementById("supportModal").style.display = "none";
+    modal.style.display = "none";
   });
 
   // Floating particles inside modal
-  const modal = document.getElementById("supportModal");
   for(let i=0; i<20; i++){
     const p = document.createElement('div');
     p.className = 'particle';
@@ -159,17 +159,24 @@
     modal.appendChild(p);
   }
 
-  // Particle animation keyframes
+  // Particle animation keyframes and modal slide-up
   const styleEl = document.createElement('style');
   styleEl.innerHTML = `
-  @keyframes float {
-    0% { transform: translateY(100vh) translateX(0) scale(0.5); opacity:0; }
-    10% { opacity:0.7; }
-    50% { transform: translateY(50vh) translateX(30px) scale(1); opacity:1; }
-    100% { transform: translateY(-10vh) translateX(-30px) scale(0.5); opacity:0; }
-  }`;
+    @keyframes float {
+      0% { transform: translateY(100vh) translateX(0) scale(0.5); opacity:0; }
+      10% { opacity:0.7; }
+      50% { transform: translateY(50vh) translateX(30px) scale(1); opacity:1; }
+      100% { transform: translateY(-10vh) translateX(-30px) scale(0.5); opacity:0; }
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(50px); opacity:0; }
+      to { transform: translateY(0); opacity:1; }
+    }
+  `;
   document.head.appendChild(styleEl);
-  </script>
+</script>
+
       
 </body>
 </html>
