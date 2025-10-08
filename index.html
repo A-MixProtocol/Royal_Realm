@@ -7,20 +7,51 @@
 <link rel="stylesheet" href="css/style.css">
 <style>
 
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Layout fix for footer lock */
+html, body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Georgia', serif;
+}
+
+/* Make content grow */
+main {
+  flex: 1;
+  padding: 20px;
+}
+
+/* Make footer stick to bottom */
+footer {
+  background: #bfa56a;
+  color: #fff;
+  text-align: center;
+  padding: 15px 10px;
+  margin-top: auto;
+  font-size: 0.9em;
+}
+
 /* Make the Razorpay button sticky at bottom-right */
 .realm {
-  position: fixed;       /* Fixes it relative to viewport */
-  bottom: 20px;          /* Distance from bottom */
-  right: 20px;           /* Distance from right */
-  z-index: 1000;         /* Keep it on top of other elements */
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
 }
 
 /* Sticky coffee button */
 .coffee-sticky {
   position: fixed;
-  right: 20px; /* change to left:20px; if you want left side */
-  bottom: 50px;
-  background: #bfa56a; /* royal gold */
+  right: 20px;
+  bottom: 70px;
+  background: #bfa56a;
   color: #fff;
   font-family: 'Georgia', serif;
   font-weight: bold;
@@ -37,15 +68,9 @@
   transform: translateY(-2px);
 }
 
-.realm {
-  justify-items: center;
-}
-  
-}
-
 /* Ad placeholder */
 .ad-placeholder {
-  margin: 20px 0;
+  margin: 20px;
   padding: 15px;
   background: #f5f0e1;
   color: #555;
@@ -55,6 +80,54 @@
   border-radius: 8px;
   font-family: 'Georgia', serif;
 }
+
+/* Responsive tweaks */
+header, nav, main, footer {
+  width: 100%;
+  max-width: 100%;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background: #f5f0e1;
+  padding: 10px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #333;
+  margin: 5px 10px;
+  font-weight: bold;
+}
+
+.hero, .services, .about {
+  text-align: center;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.card {
+  background: #f5f0e1;
+  padding: 20px;
+  border-radius: 10px;
+  flex: 1 1 200px;
+}
+
+/* Small screens */
+@media (max-width: 600px) {
+  .card {
+    flex: 1 1 100%;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -92,12 +165,13 @@
   </section>
 </main>
 
-
-<!-- Ad placeholder -->
 <div class="ad-placeholder">
   Advertisement Space
 </div>
-<form class="realm"><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_RQc8VftC0UCEoP" async> </script> </form>
+
+<form class="realm">
+  <script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_RQc8VftC0UCEoP" async> </script> 
+</form>
 
 <footer>
   <p>&copy; 2025 Royal Realm. All Rights Reserved.</p>
@@ -105,4 +179,4 @@
 
 </body>
     </html>
-    
+  
