@@ -6,13 +6,53 @@
 <title>Royal Realm – Contact</title>
 <link rel="stylesheet" href="css/style.css">
 <style>
-  /* Make the Razorpay button sticky at bottom-right */
-.realm {
-  position: fixed;       /* Fixes it relative to viewport */
-  bottom: 20px;          /* Distance from bottom */
-  right: 20px;           /* Distance from right */
-  z-index: 1000;         /* Keep it on top of other elements */
-}
+  /* Page structure for sticky footer */
+  html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1; /* Pushes footer to bottom */
+  }
+
+  /* Navbar */
+  nav {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    background: #6a0dad;
+    padding: 10px 0;
+  }
+
+  nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  nav a:hover {
+    text-decoration: underline;
+  }
+
+  /* Sticky Razorpay button */
+  .realm {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+  }
+
+  /* Footer styling */
+  footer {
+    background: #6a0dad;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    font-size: 0.9rem;
+  }
 </style>
 </head>
 <body>
@@ -116,8 +156,14 @@ form.addEventListener('submit', async (e) => {
 });
 </script>
 
-<form class="realm"><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_RQc8VftC0UCEoP" async> </script> </form>
+<!-- Sticky Razorpay Button -->
+<form class="realm">
+  <script src="https://checkout.razorpay.com/v1/payment-button.js"
+    data-payment_button_id="pl_RQc8VftC0UCEoP"
+    async>
+  </script>
+</form>
 
 </body>
-                                                                                                                                                                                    </html>
-                                                                                                                                                                                    
+  </html>
+  
