@@ -5,6 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Royal Realm – Contact</title>
 <link rel="stylesheet" href="css/style.css">
+  <style>
+  /* Make the Razorpay button sticky at bottom-right */
+.realm {
+  position: fixed;       /* Fixes it relative to viewport */
+  bottom: 20px;          /* Distance from bottom */
+  right: 20px;           /* Distance from right */
+  z-index: 1000;         /* Keep it on top of other elements */
+}
+  </style>
 </head>
 <body>
 
@@ -106,6 +115,6 @@ form.addEventListener('submit', async (e) => {
   }
 });
 </script>
-
+<form class="realm"><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_RQc8VftC0UCEoP" async> </script> </form>
 </body>
 </html>
