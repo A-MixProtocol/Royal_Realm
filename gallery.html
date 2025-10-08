@@ -6,6 +6,15 @@
 <title>Royal Realm – Gallery</title>
 <link rel="stylesheet" href="css/style.css">
 <style>
+
+/* Make the Razorpay button sticky at bottom-right */
+.realm {
+  position: fixed;       /* Fixes it relative to viewport */
+  bottom: 20px;          /* Distance from bottom */
+  right: 20px;           /* Distance from right */
+  z-index: 1000;         /* Keep it on top of other elements */
+}
+
 .gallery .card {position:relative; overflow:hidden;}
 .gallery .card img {
   width:100%; border-radius:10px; display:block; transition:transform 0.5s ease; object-fit:cover;
@@ -16,13 +25,6 @@
 }
 .gallery .card:hover img {transform:scale(1.05);}
 .gallery .card:hover::after {opacity:1;}
-  /* Make the Razorpay button sticky at bottom-right */
-.realm {
-  position: fixed;       /* Fixes it relative to viewport */
-  bottom: 20px;          /* Distance from bottom */
-  right: 20px;           /* Distance from right */
-  z-index: 1000;         /* Keep it on top of other elements */
-}
 </style>
 </head>
 <body>
@@ -43,18 +45,21 @@
   <section class="services">
     <h2>Our Gallery</h2>
     <div class="cards gallery">
-      <div class="card"><img src="images/project1.jpg" alt="Project 1"></div>
-      <div class="card"><img src="images/project2.jpg" alt="Project 2"></div>
-      <div class="card"><img src="images/project3.jpg" alt="Project 3"></div>
-      <div class="card"><img src="images/screen.png" alt="Project 4"></div>
-      <div class="card"><img src="images/cycle.png" alt="See More"></div>
+      <div class="card"><img src="images/project1.jpg" alt="Available Soon"></div>
+      <div class="card"><img src="images/project2.jpg" alt="Available Soon"></div>
+      <div class="card"><img src="images/project3.jpg" alt="Available Soon"></div>
+      <div class="card"><img src="images/screen.png" alt="Available Soon"></div>
+      <div class="card"><img src="images/cycle.png" alt="Available Soon"></div>
     </div>
   </section>
 </main>
+
 <form class="realm"><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_RQc8VftC0UCEoP" async> </script> </form>
+
 <footer>
   &copy; 2025 Royal Realm. All Rights Reserved.
 </footer>
 
 </body>
-</html>
+                                                                         </html>
+  
