@@ -7,15 +7,108 @@
 <link rel="stylesheet" href="css/style.css">
 
 <style>
-  /* Make the Razorpay button sticky at bottom-right */
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Base Layout */
+html, body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Georgia', serif;
+  background: #fffaf0;
+  color: #333;
+}
+
+/* Header */
+header {
+  background: #bfa56a;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+}
+
+/* Nav */
+nav {
+  background: #f5f0e1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 10px;
+}
+
+nav a {
+  color: #333;
+  text-decoration: none;
+  margin: 5px 10px;
+  font-weight: bold;
+  transition: background 0.3s;
+  padding: 6px 10px;
+  border-radius: 4px;
+}
+
+nav a:hover {
+  background: #bfa56a;
+  color: #fff;
+}
+
+/* Main content */
+main {
+  flex: 1;
+  padding: 20px;
+  text-align: center;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.card {
+  background: #f5f0e1;
+  padding: 20px;
+  border-radius: 10px;
+  flex: 1 1 200px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+}
+
+/* Sticky Razorpay button */
 .realm {
-  position: fixed;       /* Fixes it relative to viewport */
-  bottom: 20px;          /* Distance from bottom */
-  right: 20px;           /* Distance from right */
-  z-index: 1000;         /* Keep it on top of other elements */
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+/* Footer lock */
+footer {
+  background: #bfa56a;
+  color: #fff;
+  text-align: center;
+  padding: 15px 10px;
+  margin-top: auto;
+  font-size: 0.9em;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .card {
+    flex: 1 1 100%;
+  }
+  header h1 {
+    font-size: 1.4em;
+  }
 }
 </style>
 </head>
+
 <body>
 
 <header>
@@ -55,12 +148,16 @@
   </section>
 </main>
 
-<form class="realm"><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_RQc8VftC0UCEoP" async> </script> </form>
+<form class="realm">
+  <script src="https://checkout.razorpay.com/v1/payment-button.js"
+          data-payment_button_id="pl_RQc8VftC0UCEoP" async>
+  </script>
+</form>
 
 <footer>
   &copy; 2025 Royal Realm. All Rights Reserved.
 </footer>
 
 </body>
-  </html>
-  
+    </html>
+        
