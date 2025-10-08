@@ -16,6 +16,13 @@
 }
 .gallery .card:hover img {transform:scale(1.05);}
 .gallery .card:hover::after {opacity:1;}
+  /* Make the Razorpay button sticky at bottom-right */
+.realm {
+  position: fixed;       /* Fixes it relative to viewport */
+  bottom: 20px;          /* Distance from bottom */
+  right: 20px;           /* Distance from right */
+  z-index: 1000;         /* Keep it on top of other elements */
+}
 </style>
 </head>
 <body>
@@ -44,7 +51,7 @@
     </div>
   </section>
 </main>
-
+<form class="realm"><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_RQc8VftC0UCEoP" async> </script> </form>
 <footer>
   &copy; 2025 Royal Realm. All Rights Reserved.
 </footer>
